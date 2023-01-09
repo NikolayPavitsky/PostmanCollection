@@ -1,366 +1,11 @@
 {
 	"info": {
-		"_postman_id": "5d8bd4f3-bff3-4b7c-83d2-d6bebeb66f12",
+		"_postman_id": "b33eb924-b861-48a6-9fb0-6f5cfe040657",
 		"name": "GB_Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25215109"
 	},
 	"item": [
-		{
-			"name": "Login_Admin",
-			"item": [
-				{
-					"name": "Login_Admin_User",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"token_user\", jsonData.token);\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "username",
-									"value": "GB2022109df367",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "c7f5cdd3df",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "https://test-stand.gb.ru/gateway/login",
-							"protocol": "https",
-							"host": [
-								"test-stand",
-								"gb",
-								"ru"
-							],
-							"path": [
-								"gateway",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login_Admin_User_invalid_without_password",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "username",
-									"value": "GB2022109df367",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "https://test-stand.gb.ru/gateway/login",
-							"protocol": "https",
-							"host": [
-								"test-stand",
-								"gb",
-								"ru"
-							],
-							"path": [
-								"gateway",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login_Admin_User_invalid_without_name",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "username",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "c7f5cdd3df",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "https://test-stand.gb.ru/gateway/login",
-							"protocol": "https",
-							"host": [
-								"test-stand",
-								"gb",
-								"ru"
-							],
-							"path": [
-								"gateway",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login_Admin_User_invalid_without_password&name",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "username",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "https://test-stand.gb.ru/gateway/login",
-							"protocol": "https",
-							"host": [
-								"test-stand",
-								"gb",
-								"ru"
-							],
-							"path": [
-								"gateway",
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Create_Test_User",
-			"item": [
-				{
-					"name": "Create_Test_User_valid",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "X-Auth-Token",
-								"value": "{{token_user}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "image",
-									"type": "file",
-									"src": "/C:/Users/pavit/Downloads/avatar.jpg"
-								},
-								{
-									"key": "firstName",
-									"value": "nick",
-									"type": "text"
-								},
-								{
-									"key": "lastName",
-									"value": "pupil",
-									"type": "text"
-								},
-								{
-									"key": "username",
-									"value": "test_user_name2",
-									"type": "text"
-								},
-								{
-									"key": "phone",
-									"value": "89998887766",
-									"type": "text"
-								},
-								{
-									"key": "sex",
-									"value": "male",
-									"type": "text"
-								},
-								{
-									"key": "birthDate",
-									"value": "2000-01-01",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "https://test-stand.gb.ru/gateway/dummies",
-							"protocol": "https",
-							"host": [
-								"test-stand",
-								"gb",
-								"ru"
-							],
-							"path": [
-								"gateway",
-								"dummies"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Login_Test_User",
-			"item": [
-				{
-					"name": "Login_User_valid",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"token_testuser\", jsonData.token);\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "username",
-									"value": "test_user_name2",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "1d94931586",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "https://test-stand.gb.ru/gateway/login",
-							"protocol": "https",
-							"host": [
-								"test-stand",
-								"gb",
-								"ru"
-							],
-							"path": [
-								"gateway",
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
 		{
 			"name": "Create_Posts",
 			"item": [
@@ -384,7 +29,7 @@
 						"header": [
 							{
 								"key": "X-Auth-Token",
-								"value": "f84dd14cc492931cf66351e2efb0db63",
+								"value": "d4281ef65dd7f881dfb0ea75b2967c82",
 								"type": "text"
 							}
 						],
@@ -394,7 +39,7 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/pavit/Downloads/product1.png"
+									"src": "product1.png"
 								},
 								{
 									"key": "title",
@@ -418,7 +63,7 @@
 								},
 								{
 									"key": "delayPublishTo",
-									"value": "2023-01-08",
+									"value": "2023-01-09",
 									"type": "text"
 								}
 							]
@@ -469,7 +114,7 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/pavit/Downloads/product1.png"
+									"src": "product1.png"
 								},
 								{
 									"key": "title",
@@ -493,7 +138,7 @@
 								},
 								{
 									"key": "delayPublishTo",
-									"value": "2023-01-08",
+									"value": "2023-01-09",
 									"type": "text"
 								}
 							]
@@ -521,8 +166,17 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -534,7 +188,7 @@
 						"header": [
 							{
 								"key": "X-Auth-Token",
-								"value": "f84dd14cc492931cf66351e2efb0db63",
+								"value": "d4281ef65dd7f881dfb0ea75b2967c82",
 								"type": "text"
 							}
 						],
@@ -568,7 +222,7 @@
 								},
 								{
 									"key": "delayPublishTo",
-									"value": "2023-01-08",
+									"value": "2023-01-09",
 									"type": "text"
 								}
 							]
@@ -609,7 +263,7 @@
 						"header": [
 							{
 								"key": "X-Auth-Token",
-								"value": "f84dd14cc492931cf66351e2efb0db63",
+								"value": "d4281ef65dd7f881dfb0ea75b2967c82",
 								"type": "text"
 							}
 						],
@@ -619,7 +273,7 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/pavit/Downloads/product1.bmp"
+									"src": "product1.bmp"
 								},
 								{
 									"key": "title",
@@ -643,7 +297,7 @@
 								},
 								{
 									"key": "delayPublishTo",
-									"value": "2023-01-08",
+									"value": "2023-01-09",
 									"type": "text"
 								}
 							]
@@ -684,7 +338,7 @@
 						"header": [
 							{
 								"key": "X-Auth-Token",
-								"value": "f84dd14cc492931cf66351e2efb0db63",
+								"value": "d4281ef65dd7f881dfb0ea75b2967c82",
 								"type": "text"
 							}
 						],
@@ -694,7 +348,7 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/pavit/Downloads/1st_september.png"
+									"src": "1st_september.png"
 								},
 								{
 									"key": "title",
@@ -718,7 +372,7 @@
 								},
 								{
 									"key": "delayPublishTo",
-									"value": "2023-01-08",
+									"value": "2023-01-09",
 									"type": "text"
 								}
 							]
@@ -746,8 +400,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -759,7 +413,7 @@
 						"header": [
 							{
 								"key": "X-Auth-Token",
-								"value": "f84dd14cc492931cf66351e2efb0db63",
+								"value": "d4281ef65dd7f881dfb0ea75b2967c82",
 								"type": "text"
 							}
 						],
@@ -769,7 +423,7 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/pavit/Downloads/product1.png"
+									"src": "product1.png"
 								},
 								{
 									"key": "title",
@@ -793,7 +447,7 @@
 								},
 								{
 									"key": "delayPublishTo",
-									"value": "2023-01-08",
+									"value": "2023-01-09",
 									"type": "text"
 								}
 							]
@@ -821,8 +475,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -834,7 +488,7 @@
 						"header": [
 							{
 								"key": "X-Auth-Token",
-								"value": "f84dd14cc492931cf66351e2efb0db63",
+								"value": "d4281ef65dd7f881dfb0ea75b2967c82",
 								"type": "text"
 							}
 						],
@@ -844,7 +498,7 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/pavit/Downloads/product1.png"
+									"src": "product1.png"
 								},
 								{
 									"key": "title",
@@ -868,7 +522,7 @@
 								},
 								{
 									"key": "delayPublishTo",
-									"value": "2023-01-08",
+									"value": "2023-01-09",
 									"type": "text"
 								}
 							]
@@ -896,8 +550,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -909,7 +563,7 @@
 						"header": [
 							{
 								"key": "X-Auth-Token",
-								"value": "f84dd14cc492931cf66351e2efb0db63",
+								"value": "d4281ef65dd7f881dfb0ea75b2967c82",
 								"type": "text"
 							}
 						],
@@ -919,7 +573,7 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/pavit/Downloads/product1.png"
+									"src": "product1.png"
 								},
 								{
 									"key": "title",
@@ -943,7 +597,7 @@
 								},
 								{
 									"key": "delayPublishTo",
-									"value": "2023-01-08",
+									"value": "2023-01-09",
 									"type": "text"
 								}
 							]
@@ -965,16 +619,6 @@
 					"response": []
 				}
 			]
-		}
-	],
-	"variable": [
-		{
-			"key": "token_user",
-			"value": ""
-		},
-		{
-			"key": "token_testuser",
-			"value": ""
 		}
 	]
 }
